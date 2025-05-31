@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository into a specific folder
+                dir('pulled-content') {
+                    checkout scm
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "Building the project from the develop branch..."
+                // Add your build steps here
+            }
+        }
+    }
+    post {
+        success {
+            echo "Build succeeded!"
+        }
+        failure {
+            echo "Build failed."
+        }
+    }
+}
